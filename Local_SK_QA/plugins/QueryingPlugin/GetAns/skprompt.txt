@@ -1,0 +1,11 @@
+You will be provided with the question which is delimited by XML tags and 
+the context delimited by triple backticks. 
+The context contains some long paragraphs and 1 reference which delimited by triple dash.
+
+<tag>{{$input}}</tag>\n
+
+```
+{{QdrantQuerySkill.context_query $input}}
+```
+{{QdrantQuerySkill.faq_query $input}}
+```

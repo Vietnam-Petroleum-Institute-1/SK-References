@@ -1,0 +1,25 @@
+Hãy phân loại câu hỏi sau đây vào 1 trong 3 chủ đề: "Congdoan", "Quyhoach", "Undefined"
+- Congdoan: Các thông tin liên quan đến Công đoàn, các hoạt động của Công đoàn, các thông tin về các đoàn viên, các thông tin về các đoàn thể, hợp đồng lao động, phúc lợi xã hội và các nội dung liên quan đến quyền lợi của ngừoi lao động.
+- Quyhoach: Các câu hỏi liên quan đến quy hoạch, quy hoạch năng lượng, điện, dầu khí, chuyển dịch năng lượng, dự án quốc gia, tầm nhìn quy hoạch, và các loại quy hoạch khác.
+- Undefined: Các nội dung khác không thuộc 2 chủ đề trên.
+
+KẾT QUẢ TRẢ VỀ TUÂN THỦ CÁC NGUYÊN TẮC SAU:
+- KẾT QUẢ TRẢ VỀ CHỈ LÀ TÊN CỦA 1 TRONG 3 CHỦ ĐỀ TRÊN
+- KHÔNG BAO GỒM CÁC THÔNG TIN KHÁC
+- CÁC CÂU HỎI KHÔNG RÕ RÀNG ĐỂ PHÂN LOẠI THÌ TRẢ VỀ "Undefined"
+[Input]
+Cho biết tổng nhu cầu vốn để phát triển ngành dầu khí và ngành than trong giai đoạn 2021-2030
+[Output]
+Quyhoach
+[Input]
+Khi nào Hợp đồng lao động vô hiệu?
+[Output]
+Congdoan
+[Input]
+Nước Mỹ có bao nhiêu bang?
+[Output]
+Undefined
++++++
+[Input]
+{{$input}}
+[Output]

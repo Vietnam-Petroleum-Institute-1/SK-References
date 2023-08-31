@@ -1,0 +1,83 @@
+### YamlMime:Hub
+title: Semantic Kernel documentation
+summary: Learn how to easily add powerful LLM AI capabilities to your app with Semantic Kernel.
+brand: semantic-kernel
+metadata:
+  title: Semantic Kernel documentation
+  description: Semantic Kernel documentation.
+  ms.topic: hub-page
+  ms.custom: "contperf-fy21q1, contperf-fy21q3"
+  ms.date: 02/22/2023
+  searchScope: []
+  titleSuffix: ""
+  ms.author: johnmaeda
+  author: johnmaeda
+  ms.manager: johnmaeda
+  hide_bc: true
+
+productDirectory:
+    items:
+    - title: About Semantic Kernel
+      imageSrc: /semantic-kernel/media/learn.png
+      links:
+        - url: /semantic-kernel/overview
+          text: Overview
+        - url: /semantic-kernel/get-started
+          text: Quick start guide
+        - url: /semantic-kernel/get-started/hackathon-materials
+          text: Hackathon materials
+        - url: /semantic-kernel/get-started/tutorials
+          text: In-depth tutorials
+    - title: Prompt engineering 101
+      imageSrc: /semantic-kernel/media/openbook.png
+      links:
+        - url: /semantic-kernel/prompt-engineering/
+          text: Overview
+        - url: /semantic-kernel/prompt-engineering/your-first-prompt
+          text: Writing your first prompt
+        - url: /semantic-kernel/prompt-engineering/llm-models
+          text: About LLM Models
+        - url: /semantic-kernel/prompt-engineering/configure-prompts
+          text: Configuring prompts
+        - url: /semantic-kernel/prompt-engineering/tokens
+          text: Understanding tokens   
+    - title: Creating chains in Semantic Kernel
+      imageSrc: /semantic-kernel/media/connector-blue.png
+      links:
+        - url: /semantic-kernel/create-chains/
+          text: Overview
+        - url: /semantic-kernel/create-chains/kernel
+          text: Orchestrating with the kernel
+        - url: /semantic-kernel/create-chains/native-functions
+          text: Chaining native functions
+        - url: /semantic-kernel/create-chains/connectors
+          text: Getting data with connectors   
+        - url: /semantic-kernel/create-chains/planner
+          text: Auto create chains with Planner   
+    - title: Building and deploying plugins
+      imageSrc: /semantic-kernel/media/concept.png
+      links:
+         - url: /semantic-kernel/create-plugins/
+           text: Overview
+         - url: /semantic-kernel/create-plugins/out-of-the-box-plugins
+           text: Out-of-the-box plugins
+    - title: App samples
+      imageSrc: /semantic-kernel/media/get-started-blue.png
+      links:
+        - url: /semantic-kernel/samples/
+          text: Overview
+        - url: /semantic-kernel/samples/localapiservice
+          text: Local API Service
+        - url: /semantic-kernel/samples/simplechatsummary
+          text: Simple Chat Summary
+        - url: /semantic-kernel/samples/bookcreator
+          text: Book Creator
+        - url: /semantic-kernel/samples/authapi
+          text: Authentication and API  
+    - title: Community
+      imageSrc: /semantic-kernel/media/i_best-practices.png
+      links:
+        - url: https://aka.ms/sk/discord
+          text: Join the community on Discord
+        - url: https://github.com/microsoft/semantic-kernel
+          text: Visit the GitHub repo

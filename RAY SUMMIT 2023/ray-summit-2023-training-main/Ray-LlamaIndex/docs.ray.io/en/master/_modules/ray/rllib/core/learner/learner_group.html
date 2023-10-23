@@ -1,0 +1,1299 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ray.rllib.core.learner.learner_group &#8212; Ray 3.0.0.dev0</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="https://docs.ray.io/en/master/_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="https://docs.ray.io/en/master/_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="https://docs.ray.io/en/master/_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="https://docs.ray.io/en/master/_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="https://docs.ray.io/en/master/_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="https://docs.ray.io/en/master/_static/pygments.css" />
+    <link rel="stylesheet" href="https://docs.ray.io/en/master/_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="https://docs.ray.io/en/master/_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="https://docs.ray.io/en/master/_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="https://docs.ray.io/en/master/_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="https://docs.ray.io/en/master/_static/autodoc_pydantic.css" />
+    <link rel="stylesheet" type="text/css" href="https://docs.ray.io/en/master/_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://docs.ray.io/en/master/_static/css/termynal.css" />
+    <link rel="stylesheet" type="text/css" href="https://docs.ray.io/en/master/_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="https://docs.ray.io/en/master/_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://docs.ray.io/_/static/css/badge_only.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="https://docs.ray.io/en/master/_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../../../../" id="documentation_options" src="https://docs.ray.io/en/master/_static/documentation_options.js"></script>
+    <script src="https://docs.ray.io/en/master/_static/jquery.js"></script>
+    <script src="https://docs.ray.io/en/master/_static/underscore.js"></script>
+    <script src="https://docs.ray.io/en/master/_static/doctools.js"></script>
+    <script src="https://docs.ray.io/en/master/_static/clipboard.min.js"></script>
+    <script src="https://docs.ray.io/en/master/_static/copybutton.js"></script>
+    <script src="https://docs.ray.io/en/master/_static/js/versionwarning.js"></script>
+    <script src="https://docs.ray.io/en/master/_static/togglebutton.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script defer="defer" src="https://docs.ray.io/en/master/_static/js/docsearch.js"></script>
+    <script defer="defer" src="https://docs.ray.io/en/master/_static/js/csat.js"></script>
+    <script defer="defer" src="https://docs.ray.io/en/master/_static/js/termynal.js"></script>
+    <script defer="defer" src="https://docs.ray.io/en/master/_static/js/custom.js"></script>
+    <script defer="defer" src="https://docs.ray.io/en/master/_static/js/top-navigation.js"></script>
+    <script src="https://docs.ray.io/en/master/_static/js/tags.js"></script>
+    <script src="https://docs.ray.io/en/master/_static/tabs.js"></script>
+    <script src="https://docs.ray.io/en/master/_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="https://docs.ray.io/en/master/_static/design-tabs.js"></script>
+    <script async="async" src="https://docs.ray.io/_/static/javascript/readthedocs-doc-embed.js"></script>
+    <link rel="canonical" href="https://docs.ray.io/en/latest/_modules/ray/rllib/core/learner/learner_group.html" />
+    <link rel="shortcut icon" href="https://docs.ray.io/en/master/_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+
+<!-- Fathom - beautiful, simple website analytics -->
+<script src="https://deer.ray.io/script.js" data-site="WYYANYOS" defer></script>
+<!-- / Fathom -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110413294-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110413294-1');
+</script>
+
+<script
+  src="https://widget.kapa.ai/kapa-widget.bundle.js"
+  data-website-id="18a8c339-4ec5-43c8-8182-db3f2bc8c6b6"
+  data-project-name="Ray"
+  data-project-color="#2C2C2C"
+  data-project-logo="https://global.discourse-cdn.com/business7/uploads/ray/original/1X/8f4dcb72f7cd34e2a332d548bd65860994bc8ff1.png"
+></script>
+
+<script>
+(function(apiKey){
+    (function(p,e,n,d,o){var v,w,x,y,z;o=p[d]=p[d]||{};o._q=o._q||[];
+    v=['initialize','identify','updateOptions','pageLoad','track'];for(w=0,x=v.length;w<x;++w)(function(m){
+        o[m]=o[m]||function(){o._q[m===v[0]?'unshift':'push']([m].concat([].slice.call(arguments,0)));};})(v[w]);
+        y=e.createElement(n);y.async=!0;y.src='https://cdn.pendo.io/agent/static/'+apiKey+'/pendo.js';
+        z=e.getElementsByTagName(n)[0];z.parentNode.insertBefore(y,z);})(window,document,'script','pendo');
+
+        pendo.initialize({
+            visitor: {
+                id: 'VISITOR-UNIQUE-ID'
+            },
+            account: {
+                id: 'ACCOUNT-UNIQUE-ID'
+            }
+        });
+})('f89fa48a-6dd7-4d7c-67cf-a8051ed891f2');
+</script>
+
+
+
+  
+<!-- RTD Extra Head -->
+
+<link rel="stylesheet" href="https://docs.ray.io/_/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+<script type="application/json" id="READTHEDOCS_DATA">{"ad_free": false, "api_host": "https://readthedocs.com", "builder": "sphinx", "canonical_url": null, "docroot": "/doc/source/", "features": {"docsearch_disabled": false}, "global_analytics_code": "UA-17997319-2", "language": "en", "page": "_modules/ray/rllib/core/learner/learner_group", "programming_language": "py", "project": "anyscale-ray", "proxied_api_host": "/_", "source_suffix": ".rst", "subprojects": {}, "theme": "sphinx_book_theme", "user_analytics_code": "", "version": "master"}</script>
+
+<!--
+Using this variable directly instead of using `JSON.parse` is deprecated.
+The READTHEDOCS_DATA global variable will be removed in the future.
+-->
+<script type="text/javascript">
+READTHEDOCS_DATA = JSON.parse(document.getElementById('READTHEDOCS_DATA').innerHTML);
+</script>
+
+<script type="text/javascript" src="https://docs.ray.io/_/static/javascript/readthedocs-analytics.js" async="async"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"><div class='topnav'></div></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Ray 3.0.0.dev0</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main Navigation">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../../../../index.html">
+                    Welcome to Ray!
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Ray
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-overview/index.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-overview/getting-started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-more-libs/installation.html">
+   Installation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-overview/use-cases.html">
+   Use Cases
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-overview/examples.html">
+   Example Gallery
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-overview/ray-libraries.html">
+   Ecosystem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-core/walkthrough.html">
+   Ray Core
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../data/data.html">
+   Ray Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../train/train.html">
+   Ray Train
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../tune.html">
+   Ray Tune
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../serve/index.html">
+   Ray Serve
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../rllib/index.html">
+   Ray RLlib
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-more-libs/index.html">
+   More Libraries
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-core/cluster/index.html">
+   Ray Clusters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-observability/index.html">
+   Monitoring and Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-references/api.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../../ray-contribute/stability.html">
+   Developer Guides
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/ray-project/ray"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/ray-project/ray/issues/new?title=Issue%20on%20page%20%2F_modules/ray/rllib/core/learner/learner_group.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for ray.rllib.core.learner.learner_group</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">deque</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">import</span> <span class="nn">pathlib</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Any</span><span class="p">,</span>
+    <span class="n">Callable</span><span class="p">,</span>
+    <span class="n">List</span><span class="p">,</span>
+    <span class="n">Mapping</span><span class="p">,</span>
+    <span class="n">Optional</span><span class="p">,</span>
+    <span class="n">Set</span><span class="p">,</span>
+    <span class="n">Type</span><span class="p">,</span>
+    <span class="n">TYPE_CHECKING</span><span class="p">,</span>
+    <span class="n">Union</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+
+<span class="kn">import</span> <span class="nn">ray</span>
+<span class="kn">from</span> <span class="nn">ray.rllib.core.learner.reduce_result_dict_fn</span> <span class="kn">import</span> <span class="n">_reduce_mean_results</span>
+<span class="kn">from</span> <span class="nn">ray.rllib.core.rl_module.rl_module</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ModuleID</span><span class="p">,</span>
+    <span class="n">SingleAgentRLModuleSpec</span><span class="p">,</span>
+    <span class="n">RLMODULE_STATE_DIR_NAME</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">ray.rllib.core.learner.learner</span> <span class="kn">import</span> <span class="n">LearnerSpec</span>
+<span class="kn">from</span> <span class="nn">ray.rllib.policy.sample_batch</span> <span class="kn">import</span> <span class="n">MultiAgentBatch</span>
+<span class="kn">from</span> <span class="nn">ray.rllib.utils.actor_manager</span> <span class="kn">import</span> <span class="n">FaultTolerantActorManager</span>
+<span class="kn">from</span> <span class="nn">ray.rllib.utils.minibatch_utils</span> <span class="kn">import</span> <span class="n">ShardBatchIterator</span>
+<span class="kn">from</span> <span class="nn">ray.rllib.utils.typing</span> <span class="kn">import</span> <span class="n">ResultDict</span>
+<span class="kn">from</span> <span class="nn">ray.rllib.utils.numpy</span> <span class="kn">import</span> <span class="n">convert_to_numpy</span>
+<span class="kn">from</span> <span class="nn">ray.train._internal.backend_executor</span> <span class="kn">import</span> <span class="n">BackendExecutor</span>
+<span class="kn">from</span> <span class="nn">ray.tune.utils.file_transfer</span> <span class="kn">import</span> <span class="n">sync_dir_between_nodes</span>
+
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">ray.rllib.core.learner.learner</span> <span class="kn">import</span> <span class="n">Learner</span>
+
+
+<span class="k">def</span> <span class="nf">_get_backend_config</span><span class="p">(</span><span class="n">learner_class</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="s2">&quot;Learner&quot;</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">learner_class</span><span class="o">.</span><span class="n">framework</span> <span class="o">==</span> <span class="s2">&quot;torch&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">ray.train.torch</span> <span class="kn">import</span> <span class="n">TorchConfig</span>
+
+        <span class="n">backend_config</span> <span class="o">=</span> <span class="n">TorchConfig</span><span class="p">()</span>
+    <span class="k">elif</span> <span class="n">learner_class</span><span class="o">.</span><span class="n">framework</span> <span class="o">==</span> <span class="s2">&quot;tf2&quot;</span><span class="p">:</span>
+        <span class="kn">from</span> <span class="nn">ray.train.tensorflow</span> <span class="kn">import</span> <span class="n">TensorflowConfig</span>
+
+        <span class="n">backend_config</span> <span class="o">=</span> <span class="n">TensorflowConfig</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;framework must be either torch or tf&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">backend_config</span>
+
+
+<span class="k">def</span> <span class="nf">_is_module_trainable</span><span class="p">(</span><span class="n">module_id</span><span class="p">:</span> <span class="n">ModuleID</span><span class="p">,</span> <span class="n">batch</span><span class="p">:</span> <span class="n">MultiAgentBatch</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Default implemntation for is_module_trainable()</span>
+
+<span class="sd">    It assumes that the module is trainable by default.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+
+<div class="viewcode-block" id="LearnerGroup"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.html#ray.rllib.core.learner.learner_group.LearnerGroup">[docs]</a><span class="k">class</span> <span class="nc">LearnerGroup</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Coordinator of Learners.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        learner_spec: The specification for constructing Learners.</span>
+<span class="sd">        max_queue_len: The maximum number of batches to queue up if doing async_update</span>
+<span class="sd">            If the queue is full itwill evict the oldest batch first.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">learner_spec</span><span class="p">:</span> <span class="n">LearnerSpec</span><span class="p">,</span>
+        <span class="n">max_queue_len</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">scaling_config</span> <span class="o">=</span> <span class="n">learner_spec</span><span class="o">.</span><span class="n">learner_group_scaling_config</span>
+        <span class="n">learner_class</span> <span class="o">=</span> <span class="n">learner_spec</span><span class="o">.</span><span class="n">learner_class</span>
+
+        <span class="c1"># TODO (Kourosh): Go with a _remote flag instead of _is_local to be more</span>
+        <span class="c1">#  explicit.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_local</span> <span class="o">=</span> <span class="n">scaling_config</span><span class="o">.</span><span class="n">num_workers</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_workers</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># If a user calls self.shutdown() on their own then this flag is set to true.</span>
+        <span class="c1"># When del is called the backend executor isn&#39;t shutdown twice if this flag is</span>
+        <span class="c1"># true. the backend executor would otherwise log a warning to the console from</span>
+        <span class="c1"># ray train.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_shut_down</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_module_trainable</span> <span class="o">=</span> <span class="n">_is_module_trainable</span>
+
+        <span class="c1"># How many timesteps had to be dropped due to a full input queue?</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_in_queue_ts_dropped</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_local</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span> <span class="o">=</span> <span class="n">learner_class</span><span class="p">(</span><span class="o">**</span><span class="n">learner_spec</span><span class="o">.</span><span class="n">get_params_dict</span><span class="p">())</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">build</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_in_queue</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">backend_config</span> <span class="o">=</span> <span class="n">_get_backend_config</span><span class="p">(</span><span class="n">learner_class</span><span class="p">)</span>
+            <span class="n">backend_executor</span> <span class="o">=</span> <span class="n">BackendExecutor</span><span class="p">(</span>
+                <span class="n">backend_config</span><span class="o">=</span><span class="n">backend_config</span><span class="p">,</span>
+                <span class="n">num_workers</span><span class="o">=</span><span class="n">scaling_config</span><span class="o">.</span><span class="n">num_workers</span><span class="p">,</span>
+                <span class="n">num_cpus_per_worker</span><span class="o">=</span><span class="n">scaling_config</span><span class="o">.</span><span class="n">num_cpus_per_worker</span><span class="p">,</span>
+                <span class="n">num_gpus_per_worker</span><span class="o">=</span><span class="n">scaling_config</span><span class="o">.</span><span class="n">num_gpus_per_worker</span><span class="p">,</span>
+                <span class="n">max_retries</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">backend_executor</span><span class="o">.</span><span class="n">start</span><span class="p">(</span>
+                <span class="n">train_cls</span><span class="o">=</span><span class="n">learner_class</span><span class="p">,</span>
+                <span class="n">train_cls_kwargs</span><span class="o">=</span><span class="n">learner_spec</span><span class="o">.</span><span class="n">get_params_dict</span><span class="p">(),</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend_executor</span> <span class="o">=</span> <span class="n">backend_executor</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_workers</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">.</span><span class="n">actor</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">backend_executor</span><span class="o">.</span><span class="n">worker_group</span><span class="o">.</span><span class="n">workers</span><span class="p">]</span>
+
+            <span class="c1"># Run the neural network building code on remote workers.</span>
+            <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">([</span><span class="n">w</span><span class="o">.</span><span class="n">build</span><span class="o">.</span><span class="n">remote</span><span class="p">()</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="p">])</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span> <span class="o">=</span> <span class="n">FaultTolerantActorManager</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="p">,</span>
+                <span class="c1"># TODO (sven): This probably works even without any restriction</span>
+                <span class="c1">#  (allowing for any arbitrary number of requests in-flight). Test with</span>
+                <span class="c1">#  3 first, then with unlimited, and if both show the same behavior on</span>
+                <span class="c1">#  an async algo, remove this restriction entirely.</span>
+                <span class="n">max_remote_requests_in_flight_per_actor</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="c1"># This is a list of the tags for asynchronous update requests that are</span>
+            <span class="c1"># inflight, and is used for grouping together the results of requests</span>
+            <span class="c1"># that were sent to the workers at the same time.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inflight_request_tags</span><span class="p">:</span> <span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_in_queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="n">max_queue_len</span><span class="p">)</span>
+
+<div class="viewcode-block" id="LearnerGroup.get_in_queue_stats"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.get_in_queue_stats.html#ray.rllib.core.learner.learner_group.LearnerGroup.get_in_queue_stats">[docs]</a>    <span class="k">def</span> <span class="nf">get_in_queue_stats</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Returns the current stats for the input queue for this learner group.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;learner_group_queue_size&quot;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_in_queue</span><span class="p">),</span>
+            <span class="s2">&quot;learner_group_queue_ts_dropped&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_in_queue_ts_dropped</span><span class="p">,</span>
+        <span class="p">}</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_local</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_local</span>
+
+<div class="viewcode-block" id="LearnerGroup.update"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.update.html#ray.rllib.core.learner.learner_group.LearnerGroup.update">[docs]</a>    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">batch</span><span class="p">:</span> <span class="n">MultiAgentBatch</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">minibatch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">num_iters</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">reduce_fn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span> <span class="n">ResultDict</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">_reduce_mean_results</span>
+        <span class="p">),</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]:</span>
+        <span class="sd">&quot;&quot;&quot;Do one or more gradient based updates to the Learner(s) based on given data.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            batch: The data batch to use for the update.</span>
+<span class="sd">            minibatch_size: The minibatch size to use for the update.</span>
+<span class="sd">            num_iters: The number of complete passes over all the sub-batches in the</span>
+<span class="sd">                input multi-agent batch.</span>
+<span class="sd">            reduce_fn: An optional callable to reduce the results from a list of the</span>
+<span class="sd">                Learner actors into a single result. This can be any arbitrary function</span>
+<span class="sd">                that takes a list of dictionaries and returns a single dictionary. For</span>
+<span class="sd">                example you can either take an average (default) or concatenate the</span>
+<span class="sd">                results (for example for metrics) or be more selective about you want to</span>
+<span class="sd">                report back to the algorithm&#39;s training_step. If None is passed, the</span>
+<span class="sd">                results will not get reduced.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A dictionary with the reduced results of the updates from the Learner(s) or</span>
+<span class="sd">            a list of dictionaries of results from the updates from the Learner(s).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Construct a multi-agent batch with only the trainable modules.</span>
+        <span class="n">train_batch</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">module_id</span> <span class="ow">in</span> <span class="n">batch</span><span class="o">.</span><span class="n">policy_batches</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_module_trainable</span><span class="p">(</span><span class="n">module_id</span><span class="p">,</span> <span class="n">batch</span><span class="p">):</span>
+                <span class="n">train_batch</span><span class="p">[</span><span class="n">module_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">batch</span><span class="o">.</span><span class="n">policy_batches</span><span class="p">[</span><span class="n">module_id</span><span class="p">]</span>
+        <span class="n">train_batch</span> <span class="o">=</span> <span class="n">MultiAgentBatch</span><span class="p">(</span><span class="n">train_batch</span><span class="p">,</span> <span class="n">batch</span><span class="o">.</span><span class="n">count</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                    <span class="n">train_batch</span><span class="p">,</span>
+                    <span class="n">minibatch_size</span><span class="o">=</span><span class="n">minibatch_size</span><span class="p">,</span>
+                    <span class="n">num_iters</span><span class="o">=</span><span class="n">num_iters</span><span class="p">,</span>
+                    <span class="n">reduce_fn</span><span class="o">=</span><span class="n">reduce_fn</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="k">def</span> <span class="nf">_learner_update</span><span class="p">(</span><span class="n">learner</span><span class="p">,</span> <span class="n">minibatch</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">learner</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                    <span class="n">minibatch</span><span class="p">,</span>
+                    <span class="n">minibatch_size</span><span class="o">=</span><span class="n">minibatch_size</span><span class="p">,</span>
+                    <span class="n">num_iters</span><span class="o">=</span><span class="n">num_iters</span><span class="p">,</span>
+                    <span class="n">reduce_fn</span><span class="o">=</span><span class="n">reduce_fn</span><span class="p">,</span>
+                <span class="p">)</span>
+
+            <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_results</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                    <span class="p">[</span>
+                        <span class="n">partial</span><span class="p">(</span><span class="n">_learner_update</span><span class="p">,</span> <span class="n">minibatch</span><span class="o">=</span><span class="n">minibatch</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="n">minibatch</span> <span class="ow">in</span> <span class="n">ShardBatchIterator</span><span class="p">(</span><span class="n">batch</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="p">))</span>
+                    <span class="p">]</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="c1"># TODO(sven): Move reduce_fn to the training_step</span>
+        <span class="k">if</span> <span class="n">reduce_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">results</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">reduce_fn</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LearnerGroup.async_update"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.async_update.html#ray.rllib.core.learner.learner_group.LearnerGroup.async_update">[docs]</a>    <span class="k">def</span> <span class="nf">async_update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">batch</span><span class="p">:</span> <span class="n">MultiAgentBatch</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">minibatch_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">num_iters</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">reduce_fn</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[[</span><span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span> <span class="n">ResultDict</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">_reduce_mean_results</span>
+        <span class="p">),</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]:</span>
+        <span class="sd">&quot;&quot;&quot;Asnychronously do gradient based updates to the Learner(s) with `batch`.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            batch: The data batch to use for the update.</span>
+<span class="sd">            minibatch_size: The minibatch size to use for the update.</span>
+<span class="sd">            num_iters: The number of complete passes over all the sub-batches in the</span>
+<span class="sd">                input multi-agent batch.</span>
+<span class="sd">            reduce_fn: An optional callable to reduce the results from a list of the</span>
+<span class="sd">                Learner actors into a single result. This can be any arbitrary function</span>
+<span class="sd">                that takes a list of dictionaries and returns a single dictionary. For</span>
+<span class="sd">                example you can either take an average (default) or concatenate the</span>
+<span class="sd">                results (for example for metrics) or be more selective about you want to</span>
+<span class="sd">                report back to the algorithm&#39;s training_step. If None is passed, the</span>
+<span class="sd">                results will not get reduced.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A list of list of dictionaries of results, where the outer list</span>
+<span class="sd">            corresponds to separate calls to `async_update`, and the inner</span>
+<span class="sd">            list corresponds to the results from each Learner(s). Or if the results</span>
+<span class="sd">            are reduced, a list of dictionaries of the reduced results from each</span>
+<span class="sd">            call to async_update that is ready.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Cannot call `async_update` when running in local mode with &quot;</span>
+                <span class="s2">&quot;num_workers=0.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">minibatch_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">minibatch_size</span> <span class="o">//=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">_learner_update</span><span class="p">(</span><span class="n">learner</span><span class="p">,</span> <span class="n">minibatch</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">learner</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                    <span class="n">minibatch</span><span class="p">,</span>
+                    <span class="n">minibatch_size</span><span class="o">=</span><span class="n">minibatch_size</span><span class="p">,</span>
+                    <span class="n">num_iters</span><span class="o">=</span><span class="n">num_iters</span><span class="p">,</span>
+                    <span class="n">reduce_fn</span><span class="o">=</span><span class="n">reduce_fn</span><span class="p">,</span>
+                <span class="p">)</span>
+
+            <span class="c1"># Queue the new batches.</span>
+            <span class="c1"># If queue is full, kick out the oldest item (and thus add its</span>
+            <span class="c1"># length to the &quot;dropped ts&quot; counter).</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_in_queue</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_in_queue</span><span class="o">.</span><span class="n">maxlen</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_in_queue_ts_dropped</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_in_queue</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_in_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+
+            <span class="c1"># Retrieve all ready results (kicked off by prior calls to this method).</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">fetch_ready_async_reqs</span><span class="p">(</span>
+                <span class="n">tags</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_inflight_request_tags</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="c1"># Only if there are no more requests in-flight on any of the learners,</span>
+            <span class="c1"># we can send in one new batch for sharding and parallel learning.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager_ready</span><span class="p">():</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="c1"># TODO (sven): This probably works even without any restriction</span>
+                <span class="c1">#  (allowing for any arbitrary number of requests in-flight). Test with</span>
+                <span class="c1">#  3 first, then with unlimited, and if both show the same behavior on</span>
+                <span class="c1">#  an async algo, remove this restriction entirely.</span>
+                <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_in_queue</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="c1"># Pull a single batch from the queue (from the left side, meaning:</span>
+                    <span class="c1"># use the oldest one first).</span>
+                    <span class="n">update_tag</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_inflight_request_tags</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">update_tag</span><span class="p">)</span>
+                    <span class="n">batch</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_in_queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor_async</span><span class="p">(</span>
+                        <span class="p">[</span>
+                            <span class="n">partial</span><span class="p">(</span><span class="n">_learner_update</span><span class="p">,</span> <span class="n">minibatch</span><span class="o">=</span><span class="n">minibatch</span><span class="p">)</span>
+                            <span class="k">for</span> <span class="n">minibatch</span> <span class="ow">in</span> <span class="n">ShardBatchIterator</span><span class="p">(</span>
+                                <span class="n">batch</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="p">)</span>
+                            <span class="p">)</span>
+                        <span class="p">],</span>
+                        <span class="n">tag</span><span class="o">=</span><span class="n">update_tag</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="c1"># NOTE: There is a strong assumption here that the requests launched to</span>
+            <span class="c1"># learner workers will return at the same time, since they are have a</span>
+            <span class="c1"># barrier inside of themselves for gradient aggregation. Therefore results</span>
+            <span class="c1"># should be a list of lists where each inner list should be the length of</span>
+            <span class="c1"># the number of learner workers, if results from an  non-blocking update are</span>
+            <span class="c1"># ready.</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_async_results</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+            <span class="c1"># TODO(sven): Move reduce_fn to the training_step</span>
+            <span class="k">if</span> <span class="n">reduce_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">results</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">reduce_fn</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">results</span><span class="p">]</span></div>
+
+    <span class="k">def</span> <span class="nf">_worker_manager_ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># TODO (sven): This probably works even without any restriction (allowing for</span>
+        <span class="c1">#  any arbitrary number of requests in-flight). Test with 3 first, then with</span>
+        <span class="c1">#  unlimited, and if both show the same behavior on an async algo, remove</span>
+        <span class="c1">#  this method entirely.</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">num_outstanding_async_reqs</span><span class="p">()</span>
+            <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">num_actors</span><span class="p">()</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="n">processed_results</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="n">result_or_error</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+                <span class="n">processed_results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result_or_error</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">result_or_error</span>
+        <span class="k">return</span> <span class="n">processed_results</span>
+
+    <span class="k">def</span> <span class="nf">_get_async_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get results from the worker manager and group them by tag.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A list of lists of results, where each inner list contains all results</span>
+<span class="sd">            for same tags.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">unprocessed_results</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+            <span class="n">result_or_error</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="p">(</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">tag</span>
+                <span class="p">),</span> <span class="s2">&quot;Cannot call _get_async_results on untagged async requests.&quot;</span>
+                <span class="n">unprocessed_results</span><span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">tag</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result_or_error</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">result_or_error</span>
+
+        <span class="k">for</span> <span class="n">tag</span> <span class="ow">in</span> <span class="n">unprocessed_results</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_inflight_request_tags</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">tag</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">unprocessed_results</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+
+<div class="viewcode-block" id="LearnerGroup.additional_update"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.additional_update.html#ray.rllib.core.learner.learner_group.LearnerGroup.additional_update">[docs]</a>    <span class="k">def</span> <span class="nf">additional_update</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">reduce_fn</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">ResultDict</span><span class="p">],</span> <span class="n">ResultDict</span><span class="p">]</span> <span class="o">=</span> <span class="n">_reduce_mean_results</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]:</span>
+        <span class="sd">&quot;&quot;&quot;Apply additional non-gradient based updates to the Learners.</span>
+
+<span class="sd">        For example, this could be used to do a polyak averaging update</span>
+<span class="sd">        of a target network in off policy algorithms like SAC or DQN.</span>
+
+<span class="sd">        By default this is a pass through that calls `Learner.additional_update`</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            reduce_fn: See `update()` documentation for more details.</span>
+<span class="sd">            **kwargs: Keyword arguments to pass to each Learner.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A list of dictionaries of results from the updates from each worker.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">additional_update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                <span class="p">[</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">additional_update</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_results</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">reduce_fn</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">results</span>
+            <span class="c1"># TODO(sven): Move reduce_fn to the training_step</span>
+            <span class="k">return</span> <span class="n">reduce_fn</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LearnerGroup.add_module"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.add_module.html#ray.rllib.core.learner.learner_group.LearnerGroup.add_module">[docs]</a>    <span class="k">def</span> <span class="nf">add_module</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">module_id</span><span class="p">:</span> <span class="n">ModuleID</span><span class="p">,</span>
+        <span class="n">module_spec</span><span class="p">:</span> <span class="n">SingleAgentRLModuleSpec</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Add a module to the Learners maintained by this LearnerGroup.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            module_id: The id of the module to add.</span>
+<span class="sd">            module_spec:  #TODO (Kourosh) fill in here.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span>
+                <span class="n">module_id</span><span class="o">=</span><span class="n">module_id</span><span class="p">,</span>
+                <span class="n">module_spec</span><span class="o">=</span><span class="n">module_spec</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">add_module</span><span class="p">(</span>
+                    <span class="n">module_id</span><span class="o">=</span><span class="n">module_id</span><span class="p">,</span>
+                    <span class="n">module_spec</span><span class="o">=</span><span class="n">module_spec</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_results</span><span class="p">(</span><span class="n">results</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LearnerGroup.remove_module"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.remove_module.html#ray.rllib.core.learner.learner_group.LearnerGroup.remove_module">[docs]</a>    <span class="k">def</span> <span class="nf">remove_module</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_id</span><span class="p">:</span> <span class="n">ModuleID</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Remove a module from the Learners maintained by this LearnerGroup.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            module_id: The id of the module to remove.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">remove_module</span><span class="p">(</span><span class="n">module_id</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">refs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">worker</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="p">:</span>
+                <span class="n">ref</span> <span class="o">=</span> <span class="n">worker</span><span class="o">.</span><span class="n">remove_module</span><span class="o">.</span><span class="n">remote</span><span class="p">(</span><span class="n">module_id</span><span class="p">)</span>
+                <span class="n">refs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ref</span><span class="p">)</span>
+            <span class="n">ray</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">refs</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LearnerGroup.set_weights"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.set_weights.html#ray.rllib.core.learner.learner_group.LearnerGroup.set_weights">[docs]</a>    <span class="k">def</span> <span class="nf">set_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">weights</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Set the weights of the MultiAgentRLModule maintained by each Learner.</span>
+
+<span class="sd">        The weights don&#39;t have to include all the modules in the MARLModule.</span>
+<span class="sd">            This way the weights of only some of the Agents can be set.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            weights: The weights to set each RLModule in the MARLModule to.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">set_module_state</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">results_or_errors</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">set_module_state</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="c1"># raise errors if any</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_get_results</span><span class="p">(</span><span class="n">results_or_errors</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LearnerGroup.get_weights"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.get_weights.html#ray.rllib.core.learner.learner_group.LearnerGroup.get_weights">[docs]</a>    <span class="k">def</span> <span class="nf">get_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module_ids</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Get the weights of the MultiAgentRLModule maintained by each Learner.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            module_ids: The ids of the modules to get the weights of.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A mapping of module ids to their weights.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">get_module_state</span><span class="p">(</span><span class="n">module_ids</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">worker</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">healthy_actor_ids</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">num_healthy_actors</span><span class="p">()</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">get_module_state</span><span class="p">(</span><span class="n">module_ids</span><span class="p">),</span> <span class="n">remote_actor_ids</span><span class="o">=</span><span class="p">[</span><span class="n">worker</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_results</span><span class="p">(</span><span class="n">state</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">convert_to_numpy</span><span class="p">(</span><span class="n">state</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LearnerGroup.get_state"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.get_state.html#ray.rllib.core.learner.learner_group.LearnerGroup.get_state">[docs]</a>    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="n">ModuleID</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;Get the states of the first Learners.</span>
+
+<span class="sd">        This should be the same across Learners</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">get_state</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">worker</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">healthy_actor_ids</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">num_healthy_actors</span><span class="p">()</span>
+            <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">get_state</span><span class="p">(),</span> <span class="n">remote_actor_ids</span><span class="o">=</span><span class="p">[</span><span class="n">worker</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_results</span><span class="p">(</span><span class="n">results</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="LearnerGroup.set_state"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.set_state.html#ray.rllib.core.learner.learner_group.LearnerGroup.set_state">[docs]</a>    <span class="k">def</span> <span class="nf">set_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="n">ModuleID</span><span class="p">,</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Sets the states of the Learners.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            state: The state of the Learners</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">state</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span><span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">set_state</span><span class="p">(</span><span class="n">state</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="LearnerGroup.set_is_module_trainable"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.set_is_module_trainable.html#ray.rllib.core.learner.learner_group.LearnerGroup.set_is_module_trainable">[docs]</a>    <span class="k">def</span> <span class="nf">set_is_module_trainable</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">is_module_trainable</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">ModuleID</span><span class="p">,</span> <span class="n">MultiAgentBatch</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Sets the function that determines whether a module is trainable.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            is_module_trainable: A function that takes in a module id and a batch</span>
+<span class="sd">                and returns a boolean indicating whether the module should be trained</span>
+<span class="sd">                on the batch.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">is_module_trainable</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_is_module_trainable</span> <span class="o">=</span> <span class="n">is_module_trainable</span></div>
+
+<div class="viewcode-block" id="LearnerGroup.save_state"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.save_state.html#ray.rllib.core.learner.learner_group.LearnerGroup.save_state">[docs]</a>    <span class="k">def</span> <span class="nf">save_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Saves the state of the LearnerGroup.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path: The path to save the state to.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">save_state</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">worker</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">healthy_actor_ids</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">worker_ip_addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_ip_address</span><span class="p">,</span> <span class="n">remote_actor_ids</span><span class="o">=</span><span class="p">[</span><span class="n">worker</span><span class="p">]</span>
+            <span class="p">)</span>
+            <span class="n">worker_ip_addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_results</span><span class="p">(</span><span class="n">worker_ip_addr</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">self_ip_addr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_ip_address</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">worker_ip_addr</span> <span class="o">==</span> <span class="n">self_ip_addr</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                    <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">save_state</span><span class="p">(</span><span class="n">path</span><span class="p">),</span> <span class="n">remote_actor_ids</span><span class="o">=</span><span class="p">[</span><span class="n">worker</span><span class="p">]</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># save the checkpoint to a temporary location on the worker</span>
+
+                <span class="c1"># create a temporary directory on the worker</span>
+                <span class="n">worker_temp_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_create_temporary_dir</span><span class="p">,</span> <span class="n">remote_actor_ids</span><span class="o">=</span><span class="p">[</span><span class="n">worker</span><span class="p">]</span>
+                <span class="p">)</span>
+                <span class="n">worker_temp_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_results</span><span class="p">(</span><span class="n">worker_temp_dir</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+                <span class="c1"># save the checkpoint to the temporary directory on the worker</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                    <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">save_state</span><span class="p">(</span><span class="n">worker_temp_dir</span><span class="p">),</span> <span class="n">remote_actor_ids</span><span class="o">=</span><span class="p">[</span><span class="n">worker</span><span class="p">]</span>
+                <span class="p">)</span>
+
+                <span class="c1"># sync the temporary directory on the worker to the local directory</span>
+                <span class="n">sync_dir_between_nodes</span><span class="p">(</span>
+                    <span class="n">worker_ip_addr</span><span class="p">,</span> <span class="n">worker_temp_dir</span><span class="p">,</span> <span class="n">self_ip_addr</span><span class="p">,</span> <span class="n">path</span>
+                <span class="p">)</span>
+
+                <span class="c1"># creating this function here instead of making it a member funciton</span>
+                <span class="c1"># becasue it uses the worker_temp_dir variable, and this can&#39;t</span>
+                <span class="c1"># be passed in as an argument to foreach_actor</span>
+                <span class="k">def</span> <span class="nf">remove_dir</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+                    <span class="kn">import</span> <span class="nn">shutil</span>
+
+                    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">worker_temp_dir</span><span class="p">)</span>
+
+                <span class="c1"># remove the temporary directory on the worker</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                    <span class="n">remove_dir</span><span class="p">,</span> <span class="n">remote_actor_ids</span><span class="o">=</span><span class="p">[</span><span class="n">worker</span><span class="p">]</span>
+                <span class="p">)</span></div>
+
+<div class="viewcode-block" id="LearnerGroup.load_state"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.load_state.html#ray.rllib.core.learner.learner_group.LearnerGroup.load_state">[docs]</a>    <span class="k">def</span> <span class="nf">load_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Loads the state of the LearnerGroup.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            path: The path to load the state from.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_resolve_checkpoint_path</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">load_state</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">num_healthy_actors</span><span class="p">()</span>
+            <span class="n">head_node_ip</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">get_node_ip_address</span><span class="p">()</span>
+            <span class="n">workers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">healthy_actor_ids</span><span class="p">()</span>
+
+            <span class="k">def</span> <span class="nf">_load_state</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+                <span class="c1"># doing imports here since they might not be imported on the worker</span>
+                <span class="kn">import</span> <span class="nn">ray</span>
+                <span class="kn">import</span> <span class="nn">tempfile</span>
+
+                <span class="n">worker_node_ip</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">get_node_ip_address</span><span class="p">()</span>
+                <span class="c1"># if the worker is on the same node as the head, load the checkpoint</span>
+                <span class="c1"># directly from the path otherwise sync the checkpoint from the head</span>
+                <span class="c1"># to the worker and load it from there</span>
+                <span class="k">if</span> <span class="n">worker_node_ip</span> <span class="o">==</span> <span class="n">head_node_ip</span><span class="p">:</span>
+                    <span class="n">w</span><span class="o">.</span><span class="n">load_state</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">with</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">TemporaryDirectory</span><span class="p">()</span> <span class="k">as</span> <span class="n">temp_dir</span><span class="p">:</span>
+                        <span class="n">sync_dir_between_nodes</span><span class="p">(</span>
+                            <span class="n">head_node_ip</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">worker_node_ip</span><span class="p">,</span> <span class="n">temp_dir</span>
+                        <span class="p">)</span>
+                        <span class="n">w</span><span class="o">.</span><span class="n">load_state</span><span class="p">(</span><span class="n">temp_dir</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span><span class="n">_load_state</span><span class="p">,</span> <span class="n">remote_actor_ids</span><span class="o">=</span><span class="n">workers</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="LearnerGroup.load_module_state"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.load_module_state.html#ray.rllib.core.learner.learner_group.LearnerGroup.load_module_state">[docs]</a>    <span class="k">def</span> <span class="nf">load_module_state</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">marl_module_ckpt_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">modules_to_load</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">rl_module_ckpt_dirs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="n">ModuleID</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;Load the checkpoints of the modules being trained by this LearnerGroup.</span>
+
+<span class="sd">        `load_module_state` can be used 3 ways:</span>
+<span class="sd">            1. Load a checkpoint for the MultiAgentRLModule being trained by this</span>
+<span class="sd">                LearnerGroup. Limit the modules that are loaded from the checkpoint</span>
+<span class="sd">                by specifying the `modules_to_load` argument.</span>
+<span class="sd">            2. Load the checkpoint(s) for single agent RLModules that</span>
+<span class="sd">                are in the MultiAgentRLModule being trained by this LearnerGroup.</span>
+<span class="sd">            3. Load a checkpoint for the MultiAgentRLModule being trained by this</span>
+<span class="sd">                LearnerGroup and load the checkpoint(s) for single agent RLModules</span>
+<span class="sd">                that are in the MultiAgentRLModule. The checkpoints for the single</span>
+<span class="sd">                agent RLModules take precedence over the module states in the</span>
+<span class="sd">                MultiAgentRLModule checkpoint.</span>
+
+<span class="sd">        NOTE: At lease one of marl_module_ckpt_dir or rl_module_ckpt_dirs is</span>
+<span class="sd">            must be specified. modules_to_load can only be specified if</span>
+<span class="sd">            marl_module_ckpt_dir is specified.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            marl_module_ckpt_dir: The path to the checkpoint for the</span>
+<span class="sd">                MultiAgentRLModule.</span>
+<span class="sd">            modules_to_load: A set of module ids to load from the checkpoint.</span>
+<span class="sd">            rl_module_ckpt_dirs: A mapping from module ids to the path to a</span>
+<span class="sd">                checkpoint for a single agent RLModule.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">marl_module_ckpt_dir</span> <span class="ow">or</span> <span class="n">rl_module_ckpt_dirs</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;At least one of multi_agent_module_state or &quot;</span>
+                <span class="s2">&quot;single_agent_module_states must be specified.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">marl_module_ckpt_dir</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">marl_module_ckpt_dir</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;multi_agent_module_state must be a string path.&quot;</span><span class="p">)</span>
+            <span class="n">marl_module_ckpt_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolve_checkpoint_path</span><span class="p">(</span><span class="n">marl_module_ckpt_dir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rl_module_ckpt_dirs</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rl_module_ckpt_dirs</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;single_agent_module_states must be a dictionary.&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">module_id</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">rl_module_ckpt_dirs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="s2">&quot;rl_module_ckpt_dirs must be a dictionary &quot;</span>
+                        <span class="s2">&quot;mapping module ids to string paths.&quot;</span>
+                    <span class="p">)</span>
+                <span class="n">rl_module_ckpt_dirs</span><span class="p">[</span><span class="n">module_id</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolve_checkpoint_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">modules_to_load</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">modules_to_load</span><span class="p">,</span> <span class="nb">set</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;modules_to_load must be a set.&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">module_id</span> <span class="ow">in</span> <span class="n">modules_to_load</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module_id</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;modules_to_load must be a list of strings.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_local</span><span class="p">:</span>
+            <span class="n">module_keys</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">workers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">healthy_actor_ids</span><span class="p">()</span>
+            <span class="n">module_keys</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_get_results</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span>
+                        <span class="k">lambda</span> <span class="n">w</span><span class="p">:</span> <span class="n">w</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span> <span class="n">remote_actor_ids</span><span class="o">=</span><span class="p">[</span><span class="n">workers</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                    <span class="p">)</span>
+                <span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">marl_module_ckpt_dir</span> <span class="ow">and</span> <span class="n">rl_module_ckpt_dirs</span><span class="p">:</span>
+            <span class="c1"># If both a MARLModule checkpoint and RLModule checkpoints are specified,</span>
+            <span class="c1"># the RLModule checkpoints take precedence over the MARLModule checkpoint,</span>
+            <span class="c1"># so we should not load any modules in the MARLModule checkpoint that are</span>
+            <span class="c1"># also in the RLModule checkpoints.</span>
+            <span class="k">if</span> <span class="n">modules_to_load</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">any</span><span class="p">(</span>
+                    <span class="n">module_id</span> <span class="ow">in</span> <span class="n">modules_to_load</span>
+                    <span class="k">for</span> <span class="n">module_id</span> <span class="ow">in</span> <span class="n">rl_module_ckpt_dirs</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+                <span class="p">):</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;module_id </span><span class="si">{</span><span class="n">module_id</span><span class="si">}</span><span class="s2"> was specified in both &quot;</span>
+                        <span class="s2">&quot;modules_to_load and rl_module_ckpt_dirs. Please only &quot;</span>
+                        <span class="s2">&quot;specify a module to be loaded only once, either in &quot;</span>
+                        <span class="s2">&quot;modules_to_load or rl_module_ckpt_dirs, but not both.&quot;</span>
+                    <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">modules_to_load</span> <span class="o">=</span> <span class="n">module_keys</span> <span class="o">-</span> <span class="nb">set</span><span class="p">(</span><span class="n">rl_module_ckpt_dirs</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="c1"># No need to do any file transfer operations if we are running training</span>
+        <span class="c1"># on the experiment head node.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_local</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">marl_module_ckpt_dir</span><span class="p">:</span>
+                <span class="c1"># load the MARLModule checkpoint if they were specified</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">load_state</span><span class="p">(</span>
+                    <span class="n">marl_module_ckpt_dir</span><span class="p">,</span> <span class="n">modules_to_load</span><span class="o">=</span><span class="n">modules_to_load</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">rl_module_ckpt_dirs</span><span class="p">:</span>
+                <span class="c1"># load the RLModule if they were specified</span>
+                <span class="k">for</span> <span class="n">module_id</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">rl_module_ckpt_dirs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_learner</span><span class="o">.</span><span class="n">module</span><span class="p">[</span><span class="n">module_id</span><span class="p">]</span><span class="o">.</span><span class="n">load_state</span><span class="p">(</span>
+                        <span class="n">path</span> <span class="o">/</span> <span class="n">RLMODULE_STATE_DIR_NAME</span>
+                    <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_distributed_load_module_state</span><span class="p">(</span>
+                <span class="n">marl_module_ckpt_dir</span><span class="o">=</span><span class="n">marl_module_ckpt_dir</span><span class="p">,</span>
+                <span class="n">modules_to_load</span><span class="o">=</span><span class="n">modules_to_load</span><span class="p">,</span>
+                <span class="n">rl_module_ckpt_dirs</span><span class="o">=</span><span class="n">rl_module_ckpt_dirs</span><span class="p">,</span>
+            <span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">_distributed_load_module_state</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">marl_module_ckpt_dir</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">modules_to_load</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">rl_module_ckpt_dirs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Mapping</span><span class="p">[</span><span class="n">ModuleID</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Load the checkpoints of the modules being trained by this LearnerGroup.</span>
+
+<span class="sd">           This method only needs to be called if the LearnerGroup is training</span>
+<span class="sd">           distributed learners (e.g num_learner_workers &gt; 0).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            marl_module_ckpt_dir: The path to the checkpoint for the</span>
+<span class="sd">                MultiAgentRLModule.</span>
+<span class="sd">            modules_to_load: A set of module ids to load from the checkpoint.</span>
+<span class="sd">            rl_module_ckpt_dirs: A mapping from module ids to the path to a</span>
+<span class="sd">                checkpoint for a single agent RLModule.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_workers</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">num_healthy_actors</span><span class="p">()</span>
+        <span class="n">workers</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">healthy_actor_ids</span><span class="p">()</span>
+        <span class="n">head_node_ip</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">get_node_ip_address</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">_load_module_state</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+            <span class="c1"># doing imports here since they might not be imported on the worker</span>
+            <span class="kn">import</span> <span class="nn">ray</span>
+            <span class="kn">import</span> <span class="nn">tempfile</span>
+            <span class="kn">import</span> <span class="nn">shutil</span>
+
+            <span class="n">worker_node_ip</span> <span class="o">=</span> <span class="n">ray</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">get_node_ip_address</span><span class="p">()</span>
+            <span class="c1"># sync the checkpoints from the head to the worker if the worker is not</span>
+            <span class="c1"># on the same node as the head</span>
+            <span class="n">tmp_marl_module_ckpt_dir</span> <span class="o">=</span> <span class="n">marl_module_ckpt_dir</span>
+            <span class="n">tmp_rl_module_ckpt_dirs</span> <span class="o">=</span> <span class="n">rl_module_ckpt_dirs</span>
+            <span class="k">if</span> <span class="n">worker_node_ip</span> <span class="o">!=</span> <span class="n">head_node_ip</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">marl_module_ckpt_dir</span><span class="p">:</span>
+                    <span class="n">tmp_marl_module_ckpt_dir</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
+                    <span class="n">sync_dir_between_nodes</span><span class="p">(</span>
+                        <span class="n">source_ip</span><span class="o">=</span><span class="n">head_node_ip</span><span class="p">,</span>
+                        <span class="n">source_path</span><span class="o">=</span><span class="n">marl_module_ckpt_dir</span><span class="p">,</span>
+                        <span class="n">target_ip</span><span class="o">=</span><span class="n">worker_node_ip</span><span class="p">,</span>
+                        <span class="n">target_path</span><span class="o">=</span><span class="n">tmp_marl_module_ckpt_dir</span><span class="p">,</span>
+                    <span class="p">)</span>
+                <span class="k">if</span> <span class="n">rl_module_ckpt_dirs</span><span class="p">:</span>
+                    <span class="n">tmp_rl_module_ckpt_dirs</span> <span class="o">=</span> <span class="p">{}</span>
+                    <span class="k">for</span> <span class="n">module_id</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">rl_module_ckpt_dirs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="n">tmp_rl_module_ckpt_dirs</span><span class="p">[</span><span class="n">module_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
+                        <span class="n">sync_dir_between_nodes</span><span class="p">(</span>
+                            <span class="n">source_ip</span><span class="o">=</span><span class="n">head_node_ip</span><span class="p">,</span>
+                            <span class="n">source_path</span><span class="o">=</span><span class="n">path</span><span class="p">,</span>
+                            <span class="n">target_ip</span><span class="o">=</span><span class="n">worker_node_ip</span><span class="p">,</span>
+                            <span class="n">target_path</span><span class="o">=</span><span class="n">tmp_rl_module_ckpt_dirs</span><span class="p">[</span><span class="n">module_id</span><span class="p">],</span>
+                        <span class="p">)</span>
+                        <span class="n">tmp_rl_module_ckpt_dirs</span><span class="p">[</span><span class="n">module_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span>
+                            <span class="n">tmp_rl_module_ckpt_dirs</span><span class="p">[</span><span class="n">module_id</span><span class="p">]</span>
+                        <span class="p">)</span>
+            <span class="k">if</span> <span class="n">marl_module_ckpt_dir</span><span class="p">:</span>
+                <span class="c1"># load the MARLModule checkpoint if they were specified</span>
+                <span class="n">w</span><span class="o">.</span><span class="n">module</span><span class="o">.</span><span class="n">load_state</span><span class="p">(</span>
+                    <span class="n">tmp_marl_module_ckpt_dir</span><span class="p">,</span> <span class="n">modules_to_load</span><span class="o">=</span><span class="n">modules_to_load</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="n">rl_module_ckpt_dirs</span><span class="p">:</span>
+                <span class="c1"># load the RLModule if they were specified</span>
+                <span class="k">for</span> <span class="n">module_id</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">tmp_rl_module_ckpt_dirs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">w</span><span class="o">.</span><span class="n">module</span><span class="p">[</span><span class="n">module_id</span><span class="p">]</span><span class="o">.</span><span class="n">load_state</span><span class="p">(</span><span class="n">path</span> <span class="o">/</span> <span class="n">RLMODULE_STATE_DIR_NAME</span><span class="p">)</span>
+
+            <span class="c1"># remove the temporary directories on the worker if any were created</span>
+            <span class="k">if</span> <span class="n">worker_node_ip</span> <span class="o">!=</span> <span class="n">head_node_ip</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">marl_module_ckpt_dir</span><span class="p">:</span>
+                    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">tmp_marl_module_ckpt_dir</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">rl_module_ckpt_dirs</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">module_id</span><span class="p">,</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">tmp_rl_module_ckpt_dirs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                        <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_worker_manager</span><span class="o">.</span><span class="n">foreach_actor</span><span class="p">(</span><span class="n">_load_module_state</span><span class="p">,</span> <span class="n">remote_actor_ids</span><span class="o">=</span><span class="n">workers</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_resolve_checkpoint_path</span><span class="p">(</span><span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Checks that the provided checkpoint path is a dir and makes it absolute.&quot;&quot;&quot;</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">is_dir</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Path </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> is not a directory. &quot;</span>
+                <span class="s2">&quot;Please specify a directory containing the checkpoint files.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Path </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2"> does not exist.&quot;</span><span class="p">)</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">absolute</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">path</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_create_temporary_dir</span><span class="p">(</span><span class="n">_</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Creates a temporary directory.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            _: Unused arg. Exists to make this function compatible with foreach_actor</span>
+<span class="sd">            calls.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The path to the temporary directory.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">tempfile</span>
+
+        <span class="k">return</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">mkdtemp</span><span class="p">()</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_get_ip_address</span><span class="p">(</span><span class="n">_</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns this process&#39;s address.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            _: Unused arg. Exists to make this function compatible with foreach_actor</span>
+<span class="sd">            calls.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The address of this process.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">ray</span>
+
+        <span class="k">return</span> <span class="n">ray</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">get_node_ip_address</span><span class="p">()</span>
+
+<div class="viewcode-block" id="LearnerGroup.shutdown"><a class="viewcode-back" href="../../../../../rllib/package_ref/doc/ray.rllib.core.learner.learner_group.LearnerGroup.shutdown.html#ray.rllib.core.learner.learner_group.LearnerGroup.shutdown">[docs]</a>    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Shuts down the LearnerGroup.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_local</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backend_executor</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_is_shut_down</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_shut_down</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span></div>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><!-- Override the footer area for the sphinx-book-theme to include the CSAT widget -->
+<div id="csat">
+  <div id="csat-feedback-received" class="csat-hidden">
+    <span>Thanks for the feedback!</span>
+  </div>
+  <div id="csat-inputs">
+    <span>Was this helpful?</span>
+    <div id="csat-yes" class="csat-button">
+      <svg id="csat-yes-icon" class="csat-hidden csat-icon" width="18" height="13" viewBox="0 0 18 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.00023 10.172L16.1922 0.979004L17.6072 2.393L7.00023 13L0.63623 6.636L2.05023 5.222L7.00023 10.172Z" fill="black"/>
+      </svg>
+      <span>Yes<span>
+    </div>
+    <div id="csat-no" class="csat-button">
+      <svg id="csat-no-icon" class="csat-hidden csat-icon" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M7.00023 5.58599L11.9502 0.635986L13.3642 2.04999L8.41423 6.99999L13.3642 11.95L11.9502 13.364L7.00023 8.41399L2.05023 13.364L0.63623 11.95L5.58623 6.99999L0.63623 2.04999L2.05023 0.635986L7.00023 5.58599Z" fill="black"/>
+      </svg>
+      <span>No<span>
+    </div>
+  </div>
+  <div id="csat-textarea-group" class="csat-hidden">
+    <span id="csat-feedback-label">Feedback</span>
+    <textarea id="csat-textarea"></textarea>
+    <div id="csat-submit">Submit</div>
+  </div>
+</div><p>
+  
+    By The Ray Team<br/>
+  
+      &copy; Copyright 2023, The Ray Team.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="https://docs.ray.io/en/master/_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

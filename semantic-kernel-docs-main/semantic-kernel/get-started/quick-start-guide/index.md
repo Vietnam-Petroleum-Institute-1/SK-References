@@ -16,7 +16,7 @@ In just a few steps, you can start running  the getting started guides for Seman
 - Run AI prompts from the kernel
 - Make AI prompts dynamic with variables
 - Create a simple AI agent
-- Automatically combine functions together with planner
+- Automatically combine functions together with planners
 - Store and retrieve memory with embeddings
 
 
@@ -71,7 +71,7 @@ To setup the guides, follow the steps below.
    > If you are a new contributor to open source, please [fork the repo](https://docs.github.com/en/get-started/quickstart/contributing-to-projects) to start your journey.
 
    If you have trouble cloning or forking the repo, you can watch the video below.
-   > [!VIDEO https://aka.ms/SK-Local-Setup]
+   > [!VIDEO https://learn-video.azurefd.net/vod/player?id=5a410eae-b131-4227-a8e5-8e24e0cefd8e]
 
 3. While the repository is open in VS Code, navigate to the `/dotnet/notebooks` or `/python/notebooks` folder.
 
@@ -81,7 +81,7 @@ To setup the guides, follow the steps below.
 6. Activate each code snippet with the "play" button on the left hand side.
 
    If you need help running the _00-getting-started.ipynb_ notebook, you can watch the video below.
-   > [!VIDEO https://aka.ms/SK-Getting-Started-Notebook] 
+   > [!VIDEO https://learn-video.azurefd.net/vod/player?id=fc3c792e-3b4d-4009-900c-588ee35ee426] 
 
 7. Repeat for the remaining notebooks.
     
@@ -97,7 +97,7 @@ The guides are designed to be run in order to build on the concepts learned in t
 | _02-running-prompts-from-file.ipynb_ |  [Open guide](./running-prompts-from-files.md) | Learn how to run prompts from a file |
 | _03-semantic-function-inline.ipynb_ | [Open guide](./semantic-function-inline.md) | Configure and run prompts directly in code | 
 | _04-context-variables-chat.ipynb_ | [Open guide](./context-variables-chat.md) | Use variables to make prompts dynamic |
-| _05-using-the-planner.ipynb_ | [Open guide](./using-the-planner.md) | Dynamically create prompt chains with planner |
+| _05-using-the-planner.ipynb_ | [Open guide](./using-the-planner.md) | Dynamically create prompt chains with planners |
 | _06-memory-and-embeddings.ipynb_ | [Open guide](./memory-and-embeddings.md) | Store and retrieve memory with embeddings |
 
 

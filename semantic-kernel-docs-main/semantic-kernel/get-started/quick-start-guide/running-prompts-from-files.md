@@ -66,7 +66,7 @@ else:
 
 
 ## 2) Learn about the structure of plugins
-A plugin is a collection of semantic functions (i.e., prompts) that can be loaded into the kernel. Every plugin follows a similar structure, which is described in the [ai plugin](../../ai-orchestration/plugins.md) section of the documentation. At a high level though, a plugin is a folder that contains additional folders, one for each semantic function.
+A plugin is a collection of semantic functions (i.e., prompts) that can be loaded into the kernel. Every plugin follows a similar structure, which is described in the [ai plugin](../../ai-orchestration/plugins/index.md) section of the documentation. At a high level though, a plugin is a folder that contains additional folders, one for each semantic function.
 
 ```Folder-Structure
  MySemanticPlugin (a directory)
@@ -124,7 +124,7 @@ BE CREATIVE AND FUNNY. I WANT TO LAUGH.
 +++++
 ```
 
-Note the special `$input` token within the `skprompt.txt` file, commonly referred to as a "function parameter," this token allows you as the developer to pass inputs when invoking the function. We'll explore later how functions can accept multiple variables in the [context variables guide](./context-variables-chat.md).
+Note the special `input` token within the `skprompt.txt` file, commonly referred to as a "function parameter," this token allows you as the developer to pass inputs when invoking the function. We'll explore later how functions can accept multiple variables in the [context variables guide](./context-variables-chat.md).
 
 If you want to see other examples of plugins, check out the [sample plugins folder](https://github.com/microsoft/semantic-kernel/tree/main/samples/skills) in the GitHub repo. This folder includes the following sample plugins:
 
@@ -216,7 +216,7 @@ Now that you know how to load a plugin from files, you can now move on to the ne
 | _02-running-prompts-from-file.ipynb_ |  **You are here** | Learn how to run prompts from a file |
 | _03-semantic-function-inline.ipynb_ | [Open guide](./semantic-function-inline.md) | Configure and run prompts directly in code | 
 | _04-context-variables-chat.ipynb_ | [Open guide](./context-variables-chat.md) | Use variables to make prompts dynamic |
-| _05-using-the-planner.ipynb_ | [Open guide](./using-the-planner.md) | Dynamically create prompt chains with planner |
+| _05-using-the-planner.ipynb_ | [Open guide](./using-the-planner.md) | Dynamically create prompt chains s |
 | _06-memory-and-embeddings.ipynb_ | [Open guide](./memory-and-embeddings.md) | Store and retrieve memory with embeddings |
 
 
